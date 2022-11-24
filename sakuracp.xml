@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+	<!-- Sakura Cloud Phone 储存库 -->
+	<remote name="sakuracp" fetch="." revision="sakuracp-11" />
+
+	<!-- 移除的AOSP项目 -->
+	<remove-project name="platform/build/soong" />
+	<remove-project name="platform/external/libdrm" />
+	<remove-project name="platform/external/mesa3d" />
+	<remove-project name="platform/system/extras" />
+
+	<!-- 新覆盖的AOSP项目 -->
+	<project path="build/soong" name="platform_build_soong" groups="sakuracp,pdk,tradefed" remote="sakuracp">
+		<linkfile src="root.bp" dest="Android.bp" />
+		<linkfile src="bootstrap.bash" dest="bootstrap.bash" />
+	</project>
+	<project path="external/libdrm" name="platform_external_libdrm" groups="sakuracp,pdk" remote="sakuracp"/>
+	<project path="external/mesa3d" name="platform_external_mesa3d" groups="sakuracp,pdk-cw-fs,pdk-fs" remote="sakuracp"/>
+	<project path="system/extras" name="platform_system_extras" groups="sakuracp,pdk" remote="sakuracp"/>
+
+	<!-- 新添加的AOSP项目 -->
+	<project path="external/gbm_gralloc" name="platform_external_gbm_gralloc" groups="sakuracp" remote="sakuracp"/>
+	<project path="device/sakura/sakuracp" name="device_sakura_sakuracp" groups="sakuracp" remote="sakuracp" />
+	<project path="external/llvm-project" name="external_llvm-project" groups="sakuracp" remote="sakuracp" revision="release_11.x" clone-depth="1" />
+</manifest>
